@@ -1,30 +1,6 @@
-const PHOTO_DESCRIPTIONS = [
-  'Пейзаж',
-  'Дорогая машина',
-  'Страх',
-  'Рабочий стол',
-  'Озеро',
-  'Морской закат',
-  'Дом'
-];
-
-const MESSAGES = [
-  'Всё отлично!',
-  'В целом всё неплохо. Но не всё.'
-];
-
-const NAMES = [
-  'Костя',
-  'Олег',
-  'Михаил',
-  'Мурат',
-  'Александр',
-  'Кристина',
-  'Владимир',
-  'Петр'
-];
-
-const PHOTOS_COUNT = 25;
+const CONSTS = {
+  BODY: document.querySelector('body')
+};
 
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -51,24 +27,8 @@ function createRandomIdFromRangeGenerator (min, max) {
   };
 }
 
+const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
-const createComment = () => ({
-  id: createRandomCommentId(),
-  avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
-  message: getRandomArrayElement(MESSAGES),
-  name: getRandomArrayElement(NAMES),
-});
+const isEscapeKey = (evt) => evt.key === 'Escape';
 
-const createPhotoDescription = () => ({
-  id: createRandomDescriptionId(),
-  url: `photos/${createRandomPhotoId()}.jpg`,
-  description: getRandomArrayElement(PHOTO_DESCRIPTIONS),
-  likes: getRandomInteger(15, 200),
-  comments: Array.from({length: getRandomInteger(0, 30)}, createComment),
-});
-
-
-
-
-
-export {PHOTO_DESCRIPTIONS,MESSAGES,NAMES,PHOTOS_COUNT,getRandomInteger,createRandomIdFromRangeGenerator,createComment,createPhotoDescription};
+export {getRandomInteger, createRandomIdFromRangeGenerator, getRandomArrayElement, isEscapeKey, CONSTS};

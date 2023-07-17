@@ -1,10 +1,9 @@
-import {PHOTO_DESCRIPTIONS,MESSAGES,NAMES,PHOTOS_COUNT,getRandomInteger,createRandomIdFromRangeGenerator,createComment,createPhotoDescription} from './util.js';
+import {createArrayOfPhotos} from './data.js';
 import {renderPictures} from './post.js';
-const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
+import {initBigPicture} from './big-picture.js';
+import './form.js';
 
-const createRandomDescriptionId = createRandomIdFromRangeGenerator(1, 25);
-const createRandomPhotoId = createRandomIdFromRangeGenerator(1, 25);
-const createRandomCommentId = createRandomIdFromRangeGenerator(1, 1000);
-const photos = Array.from({length: PHOTOS_COUNT}, createPhotoDescription);
+const arrayOfPhotos = createArrayOfPhotos();
 
-
+renderPictures(arrayOfPhotos);
+initBigPicture(arrayOfPhotos);
