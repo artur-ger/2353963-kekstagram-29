@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {renderPosts} from './render-posts.js';
 import { setPreviewPictureLoader } from './render-posts.js';
 import { getData} from './data.js';
@@ -14,3 +15,14 @@ try {
 } catch (err) {
   showMessage(err.message);
 }
+=======
+import {createArrayOfPhotos} from './data.js';
+import {renderPictures} from './post.js';
+import {initBigPicture} from './big-picture.js';
+import './form.js';
+
+const arrayOfPhotos = createArrayOfPhotos();
+
+renderPictures(arrayOfPhotos);
+initBigPicture(arrayOfPhotos);
+>>>>>>> master
