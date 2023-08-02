@@ -59,7 +59,7 @@ const effectLevelElement = document.querySelector('.effect-level__value');
 const renderSlider = () => sliderContainerElement.classList.remove('hidden');
 const hideSlider = () => sliderContainerElement.classList.add('hidden');
 const isStartValue = () => chosenEffect === BEGIN_EFFECT;
-//присвоение значений полей слайдера
+
 const updateSlider = () => {
   sliderElement.noUiSlider.updateOptions({
     range: {
@@ -69,24 +69,24 @@ const updateSlider = () => {
     step: chosenEffect.step,
     start: chosenEffect.max,
   });
-  //если выбран 1 эффект значит скрыть слайдер
+
   if (isStartValue()){
     hideSlider();
   } else {
-    renderSlider(); //иначе показать
+    renderSlider();
   }
 };
-//смена эффекта
+
 const onEffectsChange = (evt) => {
   if(!evt.target.classList.contains('effects__radio')) {
     return;
   }
   //
-  chosenEffect = PHOTO_EFFECTS.find((effect) => effect.name === evt.target.value);//поиск выбранного эффекта в перечислениях
+  chosenEffect = PHOTO_EFFECTS.find((effect) => effect.name === evt.target.value);
   imgPreview.className = `effects__preview--${chosenEffect.name}`;
   updateSlider();
 };
-//инициализация слайдера для эффектов
+
 const initSlider = () => {
   noUiSlider.create(sliderElement, {
     range: {
@@ -98,20 +98,20 @@ const initSlider = () => {
     connect: 'lower',
   });
 };
-//обновление значений слайдера
+
 const onSliderUpdate = () => {
   const sliderValue = sliderElement.noUiSlider.get();
   imgPreview.style.filter = isStartValue()
     ? BEGIN_EFFECT.style
-    : `${chosenEffect.style}(${sliderValue}${chosenEffect.unit})`;//присвоение значений
+    : `${chosenEffect.style}(${sliderValue}${chosenEffect.unit})`;
   effectLevelElement.value = sliderValue;
 };
-//сброс эффектов
+
 const resetEffects = () => {
   chosenEffect = BEGIN_EFFECT;
   updateSlider();
 };
-//установка эффектов
+
 const setEffectsSlider = () => {
   initSlider();
   hideSlider();
@@ -119,7 +119,7 @@ const setEffectsSlider = () => {
   sliderElement.noUiSlider.on('update', onSliderUpdate);
 
 };
-//уничтожение слайдера
+
 const destroySlider = ()=>{
   sliderElement.noUiSlider.destroy();
   effectPhoto.removeEventListener('change', onEffectsChange);
